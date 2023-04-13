@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+header {
+  background-color: #f9fafb;
+}
+header > div {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 8px;
+  text-align: right;
+}
+#menu-checkbox {
+  display: none;
+}
+/* Font Awesome icon のスタイル */
+.menu-btn > i {
+  display: inline-block;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.menu-btn > i:hover {
+  background-color: #f3f4f6;
+}
+
+.nav-content {
+  background-color: white;
+  width: 80%;
+  max-width: 450px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  padding: 8px;
+  overflow: auto;
+  transform: translateX(100%); /* 画面外に配置 */
+  transition-duration: 300ms;
+}
+.nav-menu ul {
+  list-style: none;
+  text-align: left;
+}
+.nav-menu li > a {
+  text-decoration: none;
+  color: black;
+  padding: 12px;
+  display: block;
+}
+.nav-menu li > a:hover {
+  background-color: #f3f4f6;
+}
+/* チェックボックスがアクティブ状態の時、画面内に表示 */
+#menu-checkbox:checked ~ .nav-content {
+  transform: translateX(0%);
+}
+#menu-checkbox:checked ~ .nav-close {
+  display: block;
+  opacity: 0.5;
+}
