@@ -4,6 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[line]
+  
+  has_many :chats, dependent: :destroy
+  has_one :team
+
+  def unsubscribe
+    team = Team.find_by(user_id: self.id)
+    team.destroy
+  end
 
   def social_profile(provider)
     social_profiles.select { |sp| sp.provider == provider.to_s }.first

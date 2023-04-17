@@ -23,8 +23,11 @@
             <tbody>
               <% @chats.each do |chat| %>
                 <tr>
-                  <td><%= chat.title %></td>
-                  <td><%= link_to 'Show', chat %></td>
+                  <td>
+                    <%= link_to chat do %>
+                      <%= chat.title %>
+                    <% end %>
+                  </td>
                   <td>
                     <%= link_to edit_chat_path(chat) do %>
                       <i class="fas fa-edit"></i>

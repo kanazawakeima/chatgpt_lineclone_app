@@ -21,6 +21,8 @@ gem 'cssbundling-rails'
 gem "sassc-rails"
 gem 'cssbundling-rails'
 gem "font-awesome-sass"
+gem 'pundit'
+gem 'stripe'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

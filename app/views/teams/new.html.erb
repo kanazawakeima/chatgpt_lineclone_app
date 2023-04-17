@@ -1,0 +1,26 @@
+<%= form_tag teams_path do %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+
+      <label class="amount">
+        <span>料金: 500円</span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key = "pk_test_51MqpstH9VISkxUuRHAEDUW0Y8RM2SpnM0JYtfNnQsUpNBY5i4Oj63Ju994BeJZ8lje6Ak2tXe4zlvH7bMSDww4b700ZePxaBMD"
+            data-description="A month's subscription"
+            data-amount="500"
+            data-locale="ja"
+            data-currency="JPY"
+            data-label="購入する">
+     </script>
+<% end %>
+<%= button_to "解約する", @team, form: { data: { turbo_confirm: "解約しますがいいですか?" } }, method: :delete %>
+<% if @team %>
+  <p>登録日が月末付近の場合ご注意ください</p>
+<% end %>
