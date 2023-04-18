@@ -20,7 +20,8 @@ class TeamsController < ApplicationController
     @team.stripe_subscription_id = subscription.id
     @team.active_until = Time.zone.at(subscription.current_period_end)
     if @team.save
-      flash[:success] = "成功しました"
+      current_user.update(is_subscribed: true)
+      flash[:notice] = "成功しました"
       redirect_to root_url
     else
       render 'new'
@@ -28,14 +29,13 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-    @team = Team.find_by(user_id: current_user.id)
-    deleting_stripe_subscription = Stripe::Subscription.retrieve(@team.stripe_subscription_id)
-    if current_user.unsubscribe
-      deleting_stripe_subscription.delete
-      flash[:notice] = "解約に成功しました"
-      redirect_to root_url
-    else
-      render 'new'
+    @team = Team.find(params[:id])
+    @team.destroy
+    current_user.update(is_subscribed: false)
+
+    respond_to do |format|
+      format.html { redirect_to chats_url, notice: "解約しました。" }
+      format.json { head :no_content }
     end
   end
 end
