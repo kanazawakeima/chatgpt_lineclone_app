@@ -23,6 +23,7 @@ gem 'cssbundling-rails'
 gem "font-awesome-sass"
 gem 'pundit'
 gem 'stripe'
+gem "ruby-openai"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

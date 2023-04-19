@@ -9,6 +9,15 @@ class ChatsController < ApplicationController
 
   # GET /chats/1 or /chats/1.json
   def show
+    @query = params[:query]
+
+    response = @client.chat(
+      parameters: {
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: @query }],
+      })
+
+    @chatgpts = response.dig("choices", 0, "message", "content")
   end
 
   # GET /chats/new
