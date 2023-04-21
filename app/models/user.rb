@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[line]
   
   has_many :chats, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one :team, dependent: :destroy
 
   def social_profile(provider)

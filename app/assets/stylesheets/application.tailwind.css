@@ -60,3 +60,7 @@ header > div {
   display: block;
   opacity: 0.5;
 }
+
+.scroller {
+  overflow-y: scroll;
+}

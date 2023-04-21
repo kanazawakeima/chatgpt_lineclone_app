@@ -9,15 +9,7 @@ class ChatsController < ApplicationController
 
   # GET /chats/1 or /chats/1.json
   def show
-    @query = params[:query]
-
-    response = @client.chat(
-      parameters: {
-          model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: @query }],
-      })
-
-    @chatgpts = response.dig("choices", 0, "message", "content")
+    @comments = @chat.comments
   end
 
   # GET /chats/new
@@ -35,8 +27,7 @@ class ChatsController < ApplicationController
       @chat = current_user.chats.build(chat_params)
 
       if @chat.save
-        flash[:notice] = "タスクが作成されました"
-        redirect_to chats_url
+        redirect_to chat_url(@chat)
       else
         flash.now[:alert] = "タスクの作成に失敗しました"
         render :new
