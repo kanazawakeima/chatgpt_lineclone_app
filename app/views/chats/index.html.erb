@@ -1,20 +1,43 @@
+<div class="h-screen w-screen bg-gray-200">
 <%= render "header", chat: @chat %>
-<p style="color: green"><%= notice %></p>
-<p style="color: red"><%= alert %></p>
-<div
-  class="w-full bg-center bg-cover h-96"
-  style="background-image: url(https://e1.pxfuel.com/desktop-wallpaper/869/323/desktop-wallpaper-natural-full-nature-full.jpg);"
->
-<main class="container mx-auto px-4 py-16">
-  <div class="text-center">
-    <h1 class="text-4xl font-bold mb-8">ウェルカム！</h1>
-    <p class="text-lg text-gray-700 mb-4">
-      これは、Tailwind CSSを使用して作成されたシンプルなホームページです。このページでは、ヘッダー、メインコンテンツ、およびフッターの3つのセクションで構成されています。
-    </p>
-    <a href="#" class="bg-blue-600 text-white px-6 py-3 rounded font-semibold">もっと詳しく</a>
-  </div>
-</main>
-<%= link_to "入会", new_team_path %>
+<div class="h-96 m-3 overflow-y scroll">
+  <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <% @chats.each do |chat| %>
+      <li class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
+        <div class="flex w-full items-center justify-between space-x-6 p-6">
+          <div class="flex-1 truncate">
+            <div class="flex items-center space-x-3">
+              <h3 class="truncate text-sm font-medium text-gray-900">
+                <%= link_to chat do %>
+                  <%= chat.title %>
+                <% end %>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="-mt-px flex divide-x divide-gray-200">
+            <div class="flex w-0 flex-1">
+              <%= link_to edit_chat_path(chat), class: "relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900" do %>
+                <svg class="h-5 w-5 text-gray-400">
+                  <i class="fas fa-edit"></i>
+                </svg>
+              <% end %>
+            </div>
+            <div class="-ml-px flex w-0 flex-1">
+              <a class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
+                <%= button_to chat, form: { data: { turbo_confirm: "削除しますか？" } }, method: :delete do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+</div>
 <footer class="bg-white">
   <div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
     <div class="flex justify-center space-x-6 md:order-2">
@@ -58,4 +81,3 @@
     </div>
   </div>
 </footer>
-

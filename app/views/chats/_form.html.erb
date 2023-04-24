@@ -1,22 +1,25 @@
-<%= form_with(model: chat) do |form| %>
-  <% if chat.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(chat.errors.count, "error") %> prohibited this chat from being saved:</h2>
-
-      <ul>
-        <% chat.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+<div class="bg-gray-200">
+  <%= link_to chats_path do %>
+    <i class="fas fa-chevron-left text-xl m-4"></i>
   <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+</div>
+<div class="bg-gray-200 h-96 w-screen flex justify-center items-center">
+  <div class="w-full max-w-xs">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <%= form_with(model: chat) do |form| %>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">
+            タイトル
+          </label>
+          <%= form.text_field :title, :placeholder => "タイトルを入力...", :class => "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+        <div class="flex items-center justify-between">
+          <%= form.submit '新規作成', class: "bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        </div>
+      <% end %>
+      <p class="text-center text-gray-500 text-xs">
+        &copy;2020 Acme Corp. All rights reserved.
+      </p>
+    </div>
   </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

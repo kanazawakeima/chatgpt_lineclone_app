@@ -1,3 +1,4 @@
+<h1>ユーザーネーム：<% @user.name %></h1>
 <%= form_tag teams_path do %>
     <article>
       <% if flash[:error].present? %>
@@ -20,6 +21,7 @@
             data-label="購入する">
      </script>
 <% end %>
+
 <%= button_to "解約する", @team, form: { data: { turbo_confirm: "解約しますがいいですか?" } }, method: :delete %>
 <% if @team %>
   <p>登録日が月末付近の場合ご注意ください</p>
