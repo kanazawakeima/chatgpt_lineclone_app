@@ -1,6 +1,17 @@
 <div class="h-screen w-screen bg-gray-200">
 <%= render "header", chat: @chat %>
-<div class="h-96 m-3 overflow-y scroll">
+<div class="h-96 m-3">
+<%= form_with(url: chats_path, method: :get, local: true) do |form| %>
+  <div class="search-form">
+    <%= form.text_field :keyword, value: params[:keyword], placeholder: "キーワードを入力..." %>
+    <%= form.submit "検索" %>
+  </div>
+  <div>
+    <%= link_to chats_path do %>
+      <i class="fas fa-redo-alt"></i>
+    <% end %>  
+  </div>
+<% end %>
   <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
     <% @chats.each do |chat| %>
       <li class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
