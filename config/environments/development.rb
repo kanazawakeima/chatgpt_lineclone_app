@@ -27,7 +27,7 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
   config.active_record.verbose_query_logs = true
   # config.assets.js_compressor = :uglifier
-  config.assets.compile = false
+  # config.assets.compile = false
   config.assets.quiet = true
   config.hosts << /[a-z0-9]+(-[a-z0-9]+)*\.ngrok(-free)?\.app$/
 end
