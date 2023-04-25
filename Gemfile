@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 gem "rails", "~> 7.0.3"
 gem "sprockets-rails"
-gem "pg", "~> 1.1"
+
 gem "puma", "~> 5.0"
 gem "importmap-rails"
 gem "turbo-rails"
@@ -25,9 +25,10 @@ gem 'pundit'
 gem 'stripe'
 gem "ruby-openai"
 gem 'hotwire-rails'
-# gem 'openai'
+gem 'uglifier'
 
 group :development, :test do
+  gem 'sqlite3'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
@@ -40,5 +41,10 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+group :production do
+  gem "pg", "~> 1.1"
+end
+
 gem "cssbundling-rails"
 gem "cssbundling-rails"
