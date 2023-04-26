@@ -1,50 +1,57 @@
-<header>
-  <div>
-    <input id="menu-checkbox" type="checkbox" />
-    <label class="menu-btn" for="menu-checkbox">
-      <i class="fas fa-bars"></i>
-    </label>
-    <div class="nav-content">
-      <input id="menu-checkbox" type="checkbox" />
-      <label class="menu-btn" for="menu-checkbox">
-        <i class="fas fa-times"></i>
-      </label>
-      <nav class="nav-menu">
-        <ul>
-          <%= link_to "New chat", new_chat_path %>
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @chats.each do |chat| %>
-                <tr>
-                  <td>
-                    <%= link_to chat do %>
-                      <%= chat.title %>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= link_to edit_chat_path(chat) do %>
-                      <i class="fas fa-edit"></i>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= button_to chat, form: { data: { turbo_confirm: "削除しますか？" } }, method: :delete do %>
-                      <i class="fas fa-trash"></i>
-                    <% end %>
-                  </td>
-                </tr>
+<header class="flex h-20 items-center border-y-2 p-6">
+    <p class="font-sans font-bold text-lime-400 flex-auto w-64 m-1 p-1">Chat LINE</p>
+    <div class="flex-auto w-64 m-1 p-1">
+        <input id="menu-checkbox" type="checkbox" />
+        <label class="menu-btn" for="menu-checkbox">
+            <i class="fas fa-bars"></i>
+        </label>
+        <div class="nav-content">
+            <input id="menu-checkbox" type="checkbox" />
+            <label class="menu-btn" for="menu-checkbox">
+                <i class="fas fa-times"></i>
+            </label>
+            <nav class="nav-menu">
+                <%= link_to "+ New chat", new_chat_path, class: "py-2.5 px-8 mr-4 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
+                <hr>
+                <div class="scroller bg-white py-3 h-96">
+                    <div class="mx-auto max-w-lg">
+                        <ul role="list" class="divide-y divide-gray-100">
+                            <% @chats.each do |chat| %>
+                                <li>
+                                    <div class="flex items-center gap-x-3">
+                                        <div class="flex-auto w-64 m-1 p-1">
+                                            <%= link_to chat do %>
+                                              <%= chat.title %>
+                                            <% end %>
+                                            <div class="flex-auto m-1 p-1">
+                                                <div class="flex flex-row-reverse">
+                                                    <div class="p-1">
+                                                        <%= button_to chat, form: { data: { turbo_confirm: "削除しますか？" } }, method: :delete do %>
+                                                            <i class="fas fa-trash"></i>
+                                                        <% end %>
+                                                    </div>
+                                                    <div class="p-1">
+                                                        <%= link_to edit_chat_path(chat) do %>
+                                                            <i class="fas fa-edit"></i>
+                                                        <% end %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <hr>
+            <div class="flex my-2 mx-2">
+              <%= link_to new_team_path do %>
+                <i class="far fa-user">マイページ</i>
               <% end %>
-            </tbody>
-          </table>
-        </ul>
-      </nav>
+            </div>
+        </div>
+        <label class="nav-close" for="menu-checkbox"></label>
     </div>
-    <label class="nav-close" for="menu-checkbox"></label>
-  </div>
 </header>

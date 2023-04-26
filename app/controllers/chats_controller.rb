@@ -4,11 +4,17 @@ class ChatsController < ApplicationController
   before_action :authenticate_user!
 
   # GET /chats or /chats.json
-  def index
+def index
+  if params[:keyword].present?
+    @chats = current_user.chats.search(params[:keyword]).order(created_at: :desc)
+  else
+    @chats = current_user.chats.order(created_at: :desc)
   end
+end
 
   # GET /chats/1 or /chats/1.json
   def show
+    @comments = @chat.comments
   end
 
   # GET /chats/new
@@ -22,17 +28,17 @@ class ChatsController < ApplicationController
 
   # POST /chats or /chats.json
   def create
-    @chat = Chat.new(chat_params)
-    @chat.user_id = current_user.id
+    if current_user.can_create_chat?
+      @chat = current_user.chats.build(chat_params)
 
-    respond_to do |format|
       if @chat.save
-        format.html { redirect_to chat_url(@chat), notice: "Chat was successfully created." }
-        format.json { render :show, status: :created, location: @chat }
+        redirect_to chat_url(@chat)
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @chat.errors, status: :unprocessable_entity }
+        flash.now[:alert] = "タスクの作成に失敗しました"
+        render :new
       end
+    else
+      redirect_to new_team_path, alert: "タスクの作成制限に達しました。サブスクリプションに登録して無制限のタスク作成を利用してください。"
     end
   end
 

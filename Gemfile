@@ -23,8 +23,13 @@ gem 'cssbundling-rails'
 gem "font-awesome-sass"
 gem 'pundit'
 gem 'stripe'
+gem "ruby-openai"
+gem 'hotwire-rails'
+gem 'uglifier'
+gem 'mini_magick'
 
 group :development, :test do
+  gem 'sqlite3'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
@@ -37,5 +42,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
 gem "cssbundling-rails"
 gem "cssbundling-rails"

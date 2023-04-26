@@ -6,12 +6,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[line]
   
   has_many :chats, dependent: :destroy
-  has_one :team
-
-  def unsubscribe
-    team = Team.find_by(user_id: self.id)
-    team.destroy
-  end
+  has_many :comments, dependent: :destroy
+  has_one :team, dependent: :destroy
 
   def social_profile(provider)
     social_profiles.select { |sp| sp.provider == provider.to_s }.first
@@ -32,5 +28,13 @@ class User < ApplicationRecord
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
+  end
+
+  def can_create_chat?
+    if is_subscribed
+      true
+    else
+      chats.count < 3
+    end
   end
 end
