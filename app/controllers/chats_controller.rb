@@ -4,10 +4,13 @@ class ChatsController < ApplicationController
   before_action :authenticate_user!
 
   # GET /chats or /chats.json
-  def index
-    @chats = current_user.chats
-    @chats = Chat.search(params[:keyword]).order(created_at: :desc)
+def index
+  if params[:keyword].present?
+    @chats = current_user.chats.search(params[:keyword]).order(created_at: :desc)
+  else
+    @chats = current_user.chats.order(created_at: :desc)
   end
+end
 
   # GET /chats/1 or /chats/1.json
   def show
