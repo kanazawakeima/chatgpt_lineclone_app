@@ -5,10 +5,8 @@ class ChatsController < ApplicationController
 
   # GET /chats or /chats.json
   def index
-    def index
-      @chats = current_user.chats
-      @chats = Chat.search(params[:keyword]).order(created_at: :desc)
-  end
+    @chats = current_user.chats
+    @chats = Chat.search(params[:keyword]).order(created_at: :desc)
   end
 
   # GET /chats/1 or /chats/1.json
