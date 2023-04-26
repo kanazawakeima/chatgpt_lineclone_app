@@ -1,5 +1,5 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-    def line; basic_action end
+  def line; basic_action end
 
   private
   def basic_action
@@ -10,6 +10,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         email = @omniauth["info"]["email"] ? @omniauth["info"]["email"] : "#{@omniauth["uid"]}-#{@omniauth["provider"]}@example.com"
         @profile = current_user || User.create!(provider: @omniauth["provider"], uid: @omniauth["uid"], email: email, name: @omniauth["info"]["name"], password: Devise.friendly_token[0, 20])
       end
+
+      # プロフィール画像を取得
+      profile_picture = @omniauth['info']['image']
+
+      # ここでプロフィール画像を保存する処理を追加
+      @profile.update(profile_picture: profile_picture)
+
       @profile.set_values(@omniauth)
       sign_in(:user, @profile)
     end

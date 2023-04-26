@@ -26,6 +26,7 @@ gem 'stripe'
 gem "ruby-openai"
 gem 'hotwire-rails'
 gem 'uglifier'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'sqlite3'
