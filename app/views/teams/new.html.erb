@@ -5,11 +5,11 @@
         <i class="fas fa-chevron-left"></i>
     <% end %>
     <div class="flex">
-      <%= image_tag current_user.profile_picture, alt: "Profile Picture", class: "w-16 h-16 object-cover" %>
+      <%= image_tag current_user.profile_picture, alt: "Profile Picture", class: "w-16 h-16 rounded-full object-cover" %>
       <h3 class="text-base font-semibold leading-6 text-gray-900">Username：<%= @user.name %></h3>
-      <div class="mt-2 max-w-xl text-sm text-gray-500">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptatibus corrupti atque repudiandae nam.</p>
-      </div>
+    </div>
+    <div class="mt-2 max-w-xl text-sm text-gray-500">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptatibus corrupti atque repudiandae nam.</p>
     </div>
     <div class="mt-5">
       <% if @team %>
