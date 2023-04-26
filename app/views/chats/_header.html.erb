@@ -13,7 +13,7 @@
             <nav class="nav-menu">
                 <%= link_to "+ New chat", new_chat_path, class: "py-2.5 px-8 mr-4 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
                 <hr>
-                <div class="bg-white py-3 h-96 overflow-y scroll">
+                <div data-controller="autoscroll" class="scroller bg-white py-3 h-96">
                     <div class="mx-auto max-w-lg">
                         <ul role="list" class="divide-y divide-gray-100">
                             <% @chats.each do |chat| %>

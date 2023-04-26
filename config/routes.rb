@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   end
   get 'search', to: 'chats#search'
   devise_for :users, controllers: {
-  omniauth_callbacks: "omniauth_callbacks"
-}
+    omniauth_callbacks: "omniauth_callbacks"
+  }
+  
   root 'chats#index' 
 end
