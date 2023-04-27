@@ -12,17 +12,9 @@
     </p>
 
     <div data-controller="autoscroll" class="scroller bg-gray-100 h-96 flex-1">
-        <%= render @comments %>
+      <%= render @chat.comments %>
     </div>
     <hr>
-
-    <div class="bg-gray-100 px-4 py-2">
-      <%= form_with(model: [ @chat, @chat.comments.build ], local: true) do |form| %>
-        <div class="flex items-center">
-          <%= form.text_field :content, :placeholder => "メッセージを入力...", :class => 'w-full px-3 py-2 text-sm text-gray-700 placeholder-gray-400 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-400' %>
-          <%= form.submit "送信", class: "ml-2 px-4 py-2 text-sm text-white bg-line-green hover:bg-hover-line-green hover:bg-opacity-30 rounded-lg focus:outline-none focus:bg-blue-600" %>
-        </div>
-      <% end %>
-    </div>
+    <%= render 'comments/form' %>
   </div>
 </div>

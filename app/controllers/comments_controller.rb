@@ -9,7 +9,10 @@ class CommentsController < ApplicationController
     @comment.gpt_response = fetch_gpt_response(@comment.content)
 
     if @comment.save
-      redirect_to @chat, notice: 'コメントを投稿しました。'
+      respond_to do |format|
+        format.js
+        format.html { redirect_to @chat, notice: 'コメントを投稿しました。' }
+      end
     else
       redirect_to @chat, alert: 'コメントの投稿に失敗しました。'
     end

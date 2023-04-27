@@ -1,0 +1,6 @@
+var userComment = '<%= j render("comments/user_comment", comment: @comment) %>';
+$("#comments").append(userComment);
+
+
+var gptResponse = '<%= j render("comments/gpt_response", comment: @comment) %>';
+$("#comments").append(gptResponse);
