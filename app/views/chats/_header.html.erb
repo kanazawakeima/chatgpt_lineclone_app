@@ -51,6 +51,11 @@
                 <i class="far fa-user">マイページ</i>
               <% end %>
             </div>
+            <div class="flex my-2 mx-2">
+              <%= button_to destroy_user_session_path, form: { data: { turbo_confirm: "ログアウトしますか？" } }, method: :delete do %>
+                <i class="fas fa-sign-out-alt">ログアウト</i>
+              <% end %>
+            </div>
         </div>
         <label class="nav-close" for="menu-checkbox"></label>
     </div>
